@@ -1,18 +1,11 @@
-import csv
 import sys
+import adressbuch
 
 
-filename = sys.argv[1]
-file = open(filename)
-csv_reader = csv.reader(file, delimiter=';')
+rows = adressbuch.read_data(sys.argv[1])
 
 summe = 0
-for persnr, vorname, nachname, email, adresse, geschlecht, gehalt in csv_reader:
-    try:
-        gehalt_als_zahl = int(gehalt)
-    except ValueError:
-        continue
-
-    summe += gehalt_als_zahl
+for persnr, vorname, nachname, email, adresse, geschlecht, gehalt in rows:
+    summe += gehalt
 
 print('Budget:', summe)

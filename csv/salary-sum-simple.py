@@ -1,12 +1,10 @@
-import csv
 import sys
+import adressbuch
 
 
-filename = sys.argv[1]
-file = open(filename)
-csv_reader = csv.reader(file, delimiter=';')
+rows = adressbuch.read_data(sys.argv[1])
 
 def gehalt_aus_row(row):
-    return int(row[6])
+    return row[6]
 
-print(sum(map(gehalt_aus_row, list(csv_reader)[1:])))
+print(sum(map(gehalt_aus_row, rows)))
